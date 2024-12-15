@@ -1,15 +1,17 @@
 import CoreConcept from '../CoreConcept/CoreConcept.tsx'
-import { CORE_CONCEPTS } from '../../data.ts'
+import { CORE_CONCEPTS, ExampleSection } from '../../data.ts'
 import TabButton from '../TabButton/TabButton.tsx'
 import { useState } from 'react'
 
-type ButtonType = 'component' | 'tsx' | 'state' | 'props'
+import { EXAMPLES } from '../../data.ts'
+
+type ButtonType = 'components' | 'tsx' | 'state' | 'props'
 
 const Main = () => {
-  const [selected, setSelected] = useState<ButtonType | string>('press the button')
+  const [selected, setSelected] = useState<ExampleSection>(EXAMPLES['components'])
 
   const handleSelect = (selectedButton: ButtonType) => {
-    setSelected(selectedButton)
+    setSelected(EXAMPLES[selectedButton])
   }
 
   return (
@@ -25,13 +27,18 @@ const Main = () => {
       <section id="examples">
         <h2>Examples</h2>
         <menu>
-          <TabButton onSelect={() => handleSelect('component')}>Components</TabButton>
+          <TabButton onSelect={() => handleSelect('components')}>Components</TabButton>
           <TabButton onSelect={() => handleSelect('tsx')}>TSX</TabButton>
           <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
           <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
-        <div>Dynamic content</div>
-        <div>{selected}</div>
+        <div id="tab-content">
+          <h3>{selected.title}</h3>
+          <p>{selected.description}</p>
+          <pre>
+            <code>{selected.code}</code>
+          </pre>
+        </div>
       </section>
     </main>
   )
