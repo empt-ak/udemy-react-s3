@@ -3,8 +3,8 @@ import { CORE_CONCEPTS } from '../../data.ts'
 import TabButton from '../TabButton/TabButton.tsx'
 
 const Main = () => {
-  const handleSelect = () => {
-    console.log('clickity click')
+  const handleSelect = (selectedButton: 'component' | 'tsx' | 'state' | 'props') => {
+    console.log('clickity click ' + selectedButton)
   }
 
   return (
@@ -20,10 +20,10 @@ const Main = () => {
       <section id="examples">
         <h2>Examples</h2>
         <menu>
-          <TabButton onSelect={handleSelect}>Components</TabButton>
-          <TabButton onSelect={handleSelect}>TSX</TabButton>
-          <TabButton onSelect={handleSelect}>Props</TabButton>
-          <TabButton onSelect={handleSelect}>State</TabButton>
+          <TabButton onSelect={() => handleSelect('component')}>Components</TabButton>
+          <TabButton onSelect={() => handleSelect('tsx')}>TSX</TabButton>
+          <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
+          <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
         <div>Dynamic content</div>
       </section>
