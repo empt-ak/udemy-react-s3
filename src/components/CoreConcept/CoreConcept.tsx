@@ -4,7 +4,7 @@ interface CoreConceptProps {
   title: string
   description: string
   image: string
-  children?: React.ReactElement;
+  children?: React.ReactNode;
   style?: React.CSSProperties;
 }
 

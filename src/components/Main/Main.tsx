@@ -1,5 +1,6 @@
 import CoreConcept from '../CoreConcept/CoreConcept.tsx'
 import {CORE_CONCEPTS} from '../../data.ts'
+import TabButton from '../TabButton/TabButton.tsx'
 
 const Main = () => {
   return (
@@ -11,6 +12,15 @@ const Main = () => {
               return <CoreConcept {...d}/>
             })}
           </ul>
+        </section>
+        <section id="examples">
+            <h2>Examples</h2>
+            <menu>
+                <TabButton>Components</TabButton>
+                <TabButton>TSX</TabButton>
+                <TabButton>Props</TabButton>
+                <TabButton>State</TabButton>
+            </menu>
         </section>
       </main>
   )
