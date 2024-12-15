@@ -8,8 +8,8 @@ const Main = () => {
         <section id="core-concepts">
           <h2>Core concepts</h2>
           <ul>
-            {CORE_CONCEPTS.map(d => {
-              return <CoreConcept {...d}/>
+            {CORE_CONCEPTS.map((d,i) => {
+              return <CoreConcept key={'cc-' + i} {...d}/>
             })}
           </ul>
         </section>
