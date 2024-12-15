@@ -36,18 +36,13 @@ const Main = () => {
       <section id="examples">
         <h2>Examples</h2>
         <menu>
-          <TabButton isSelected={selectedTab === 'components'} onSelect={() => handleSelect('components')}>
-            Components
-          </TabButton>
-          <TabButton isSelected={selectedTab === 'tsx'} onSelect={() => handleSelect('tsx')}>
-            TSX
-          </TabButton>
-          <TabButton isSelected={selectedTab === 'props'} onSelect={() => handleSelect('props')}>
-            Props
-          </TabButton>
-          <TabButton isSelected={selectedTab === 'state'} onSelect={() => handleSelect('state')}>
-            State
-          </TabButton>
+          {Object.keys(EXAMPLES).map((d, i) => {
+            return (
+              <TabButton key={'examples-' + i} isSelected={selectedTab === d} onSelect={() => handleSelect(d as ButtonType)}>
+                {EXAMPLES[d].title}
+              </TabButton>
+            )
+          })}
         </menu>
         {tabContent}
       </section>
