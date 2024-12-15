@@ -4,28 +4,23 @@ import TabButton from '../TabButton/TabButton.tsx'
 import { useState } from 'react'
 
 import { EXAMPLES } from '../../data.ts'
+import TabContent from '../TabContent/TabContent.tsx'
 
 type ButtonType = 'components' | 'tsx' | 'state' | 'props'
 
 const Main = () => {
   const [selected, setSelected] = useState<ExampleSection | null>(null)
+  const [selectedTab, setSelectedTab] = useState<ButtonType | null>(null)
 
   const handleSelect = (selectedButton: ButtonType) => {
     setSelected(EXAMPLES[selectedButton])
+    setSelectedTab(selectedButton)
   }
 
   let tabContent = <p>select something</p>
 
   if (selected) {
-    tabContent = (
-      <div id="tab-content">
-        <h3>{selected.title}</h3>
-        <p>{selected.description}</p>
-        <pre>
-          <code>{selected.code}</code>
-        </pre>
-      </div>
-    )
+    tabContent = <TabContent {...selected} />
   }
 
   return (
@@ -41,10 +36,18 @@ const Main = () => {
       <section id="examples">
         <h2>Examples</h2>
         <menu>
-          <TabButton onSelect={() => handleSelect('components')}>Components</TabButton>
-          <TabButton onSelect={() => handleSelect('tsx')}>TSX</TabButton>
-          <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-          <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+          <TabButton isSelected={selectedTab === 'components'} onSelect={() => handleSelect('components')}>
+            Components
+          </TabButton>
+          <TabButton isSelected={selectedTab === 'tsx'} onSelect={() => handleSelect('tsx')}>
+            TSX
+          </TabButton>
+          <TabButton isSelected={selectedTab === 'props'} onSelect={() => handleSelect('props')}>
+            Props
+          </TabButton>
+          <TabButton isSelected={selectedTab === 'state'} onSelect={() => handleSelect('state')}>
+            State
+          </TabButton>
         </menu>
         {tabContent}
       </section>
