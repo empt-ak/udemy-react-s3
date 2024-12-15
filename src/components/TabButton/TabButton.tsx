@@ -1,19 +1,16 @@
 import React from 'react'
 
 export interface TabButtonProps {
-    children?: React.ReactNode
+  children?: React.ReactNode
+  onSelect: () => void
 }
 
 const TabButton = (props: TabButtonProps) => {
-    const handleClick = (ev: React.MouseEvent<HTMLButtonElement>): void => {
-        console.log(ev)
-    }
-
-    return (
-        <li>
-            <button onClick={handleClick}>{props.children}</button>
-        </li>
-    )
+  return (
+    <li>
+      <button onClick={props.onSelect}>{props.children}</button>
+    </li>
+  )
 }
 
 export default TabButton
