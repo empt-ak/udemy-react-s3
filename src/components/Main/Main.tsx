@@ -1,10 +1,15 @@
 import CoreConcept from '../CoreConcept/CoreConcept.tsx'
 import { CORE_CONCEPTS } from '../../data.ts'
 import TabButton from '../TabButton/TabButton.tsx'
+import { useState } from 'react'
+
+type ButtonType = 'component' | 'tsx' | 'state' | 'props'
 
 const Main = () => {
-  const handleSelect = (selectedButton: 'component' | 'tsx' | 'state' | 'props') => {
-    console.log('clickity click ' + selectedButton)
+  const [selected, setSelected] = useState<ButtonType | string>('press the button')
+
+  const handleSelect = (selectedButton: ButtonType) => {
+    setSelected(selectedButton)
   }
 
   return (
@@ -26,6 +31,7 @@ const Main = () => {
           <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
         <div>Dynamic content</div>
+        <div>{selected}</div>
       </section>
     </main>
   )
