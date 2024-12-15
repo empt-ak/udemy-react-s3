@@ -8,10 +8,24 @@ import { EXAMPLES } from '../../data.ts'
 type ButtonType = 'components' | 'tsx' | 'state' | 'props'
 
 const Main = () => {
-  const [selected, setSelected] = useState<ExampleSection>(EXAMPLES['components'])
+  const [selected, setSelected] = useState<ExampleSection | null>(null)
 
   const handleSelect = (selectedButton: ButtonType) => {
     setSelected(EXAMPLES[selectedButton])
+  }
+
+  let tabContent = <p>select something</p>
+
+  if (selected) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{selected.title}</h3>
+        <p>{selected.description}</p>
+        <pre>
+          <code>{selected.code}</code>
+        </pre>
+      </div>
+    )
   }
 
   return (
@@ -32,13 +46,7 @@ const Main = () => {
           <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
           <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
         </menu>
-        <div id="tab-content">
-          <h3>{selected.title}</h3>
-          <p>{selected.description}</p>
-          <pre>
-            <code>{selected.code}</code>
-          </pre>
-        </div>
+        {tabContent}
       </section>
     </main>
   )
