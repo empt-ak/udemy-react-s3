@@ -1,5 +1,5 @@
-import CoreConcept from './CoreConcept.tsx'
-import {CORE_CONCEPTS} from '../data.ts'
+import CoreConcept from '../CoreConcept/CoreConcept.tsx'
+import {CORE_CONCEPTS} from '../../data.ts'
 
 const Main = () => {
   return (

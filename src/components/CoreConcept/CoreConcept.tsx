@@ -1,3 +1,5 @@
+import './CoreConcept.css'
+
 interface CoreConceptProps {
   title: string
   description: string
